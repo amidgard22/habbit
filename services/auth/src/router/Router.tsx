@@ -1,19 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-import { App } from "@/components/App/App";
+
 import { Suspense } from "react";
 import { UserCard } from "@packages/shared/src/components/UserCard";
-import Auth from "@/pages/Auth/Auth";
+import AppLayout from "@/components/authLayout/AppLayout";
+import { Login } from "@/pages/Login";
 
 const routes = [
   {
     path: "/auth",
-    element: <App />,
+    element: <AppLayout />,
     children: [
       {
         path: "/auth/login",
         element: (
           <Suspense fallback={"Loading..."}>
-            <Auth />
+            <Login />
           </Suspense>
         ),
       },

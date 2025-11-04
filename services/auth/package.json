@@ -1,5 +1,5 @@
 {
-  "name": "shop",
+  "name": "auth",
   "version": "1.0.0",
   "dependencies": {
     "@packages/build-config": "*",

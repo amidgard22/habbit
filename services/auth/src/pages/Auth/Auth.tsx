@@ -3,7 +3,7 @@ import { shopRoutes } from "@packages/shared/src/routes/shop";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 
-const Shop = () => {
+const Auth = () => {
   return (
     <h1>
       SHOP
@@ -15,4 +15,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Auth;

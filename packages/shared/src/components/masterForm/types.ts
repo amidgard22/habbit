@@ -11,7 +11,7 @@ export interface FormTypes {
   inputs?: InputsData[] | [];
   buttonText: string | "";
   bottomText?: string | React.ReactNode;
-  agreementText?: string | "";
+  agreementText?: string | React.ReactNode;
   onSubmit: (values: Record<string, any>) => void;
   className: string;
 }

@@ -2,7 +2,9 @@ import { MasterForm } from "@packages/shared/src/components/masterForm/MasterFor
 import { InputsData } from "@packages/shared/src/components/masterForm/types";
 import { Link } from "react-router-dom";
 import { authRoutes } from "@packages/shared/src/routes/auth";
-import styles from "./Login.module.scss";
+import styles from "../../shared/auth.module.scss";
+import loginStyles from "./login.module.scss";
+
 const loginInputs: InputsData[] = [
   {
     inputName: "Email Address",
@@ -19,8 +21,11 @@ const loginInputs: InputsData[] = [
 ];
 
 const createAccount: React.ReactNode = (
-  <p>
-    Don’t have an account? <Link to={authRoutes.registration}>Sign Up</Link>
+  <p className={loginStyles.textWrapper}>
+    Don’t have an account? {""}
+    <Link className={loginStyles.link} to={authRoutes.registration}>
+      Sign Up
+    </Link>
   </p>
 );
 
@@ -36,7 +41,7 @@ const Login = () => {
       buttonText="Sign In"
       bottomText={createAccount}
       onSubmit={onSubmit}
-      className={styles.loginWrapper}
+      className={styles.authWrapper}
     />
   );
 };

@@ -68,7 +68,7 @@ export const MasterForm: React.FC<FormTypes> = ({
         {buttonText}
       </Button>
 
-      <div className={`${className}__bottomText`}>{bottomText}</div>
+      <div>{bottomText}</div>
 
       {agreementText}
     </Form>

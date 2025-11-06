@@ -67,6 +67,10 @@ export default (env: EnvVariables) => {
           eager: true,
           // requiredVersion: packageJson.dependencies['react-dom'],
         },
+        "@shared/store": { eager: true },
+        "react-redux": { eager: true },
+        "@reduxjs/toolkit": { eager: true },
+        axios: { eager: true },
       },
     })
   );

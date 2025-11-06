@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { authRoutes } from "@packages/shared/src/routes/auth";
 import styles from "../../shared/auth.module.scss";
 import loginStyles from "./Login.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "@packages/shared/src/store/slices/userSlice";
+import { useEffect } from "react";
 
 const loginInputs: InputsData[] = [
   {
@@ -30,8 +33,18 @@ const createAccount: React.ReactNode = (
 );
 
 const Login = () => {
-  const onSubmit = (values: Record<string, any>) => console.log(values);
+  const dispatch = useDispatch();
 
+  const onSubmit = (values: Record<string, any>) => {
+    console.log("Form values:", values);
+
+    const fakeToken = "fake-token-123";
+    dispatch(setUser(fakeToken));
+
+    console.log("User authorized!");
+  };
+
+  useEffect(() => {}, []);
   return (
     <MasterForm
       title="Welcome back"

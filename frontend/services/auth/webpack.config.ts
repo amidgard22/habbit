@@ -58,6 +58,19 @@ export default (env: EnvVariables) => {
           eager: true,
           requiredVersion: packageJson.dependencies["antd"],
         },
+        "@shared/store": { eager: true },
+        "react-redux": {
+          eager: true,
+          requiredVersion: packageJson.dependencies["react-redux"],
+        },
+        "@reduxjs/toolkit": {
+          eager: true,
+          requiredVersion: packageJson.dependencies["@reduxjs/toolkit"],
+        },
+        axios: {
+          eager: true,
+          requiredVersion: packageJson.dependencies["axios"],
+        },
       },
     })
   );

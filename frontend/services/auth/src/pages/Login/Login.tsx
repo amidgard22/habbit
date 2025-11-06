@@ -3,7 +3,7 @@ import { InputsData } from "@packages/shared/src/components/masterForm/types";
 import { Link } from "react-router-dom";
 import { authRoutes } from "@packages/shared/src/routes/auth";
 import styles from "../../shared/auth.module.scss";
-import loginStyles from "./login.module.scss";
+import loginStyles from "./Login.module.scss";
 
 const loginInputs: InputsData[] = [
   {

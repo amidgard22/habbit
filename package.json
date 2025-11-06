@@ -1,11 +1,12 @@
 {
   "name": "monorepo-module-federation",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "start": ""
   },
   "workspaces": [
-    "packages/*",
-    "services/*"
+    "frontend/packages/*",
+    "frontend/services/*"
   ]
 }

@@ -1,5 +1,4 @@
-import React from "react";
-import { shopRoutes } from "@packages/shared/src/routes/shop";
+import { profileRoutes } from "@packages/shared/src/routes/profile";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 
@@ -9,7 +8,7 @@ const Shop = () => {
       SHOP
       <div>
         <Button>as</Button>
-        <Link to={shopRoutes.second}>go to second page</Link>
+        <Link to={profileRoutes.main}>go to second page</Link>
       </div>
     </h1>
   );

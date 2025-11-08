@@ -1,22 +1,23 @@
 import { MasterForm } from "@packages/shared/src/components/masterForm/MasterForm";
 import { InputsData } from "@packages/shared/src/components/masterForm/types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authRoutes } from "@packages/shared/src/routes/auth";
 import styles from "../../shared/auth.module.scss";
 import loginStyles from "./Login.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "@packages/shared/src/store/slices/userSlice";
-import { useEffect } from "react";
+import { useLoginMutation } from "@packages/shared/src/store/api/auth/authAPI";
+import { LoginRequest } from "@packages/shared/src/store/api/auth/types";
 
 const loginInputs: InputsData[] = [
   {
-    inputName: "Email Address",
+    inputName: "email",
     placeholder: "you@example.com",
     inputType: "email",
     isRequired: true,
   },
   {
-    inputName: "Password",
+    inputName: "password",
     placeholder: "Enter your password",
     inputType: "password",
     isRequired: true,
@@ -33,18 +34,31 @@ const createAccount: React.ReactNode = (
 );
 
 const Login = () => {
+  const [login, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit = (values: Record<string, any>) => {
-    console.log("Form values:", values);
+  const onSubmit = async (values: Record<string, any>) => {
+    const credentials: LoginRequest = {
+      email: values.email,
+      password: values.password,
+    };
 
-    const fakeToken = "fake-token-123";
-    dispatch(setUser(fakeToken));
+    try {
+      const result = await login(credentials).unwrap();
 
-    console.log("User authorized!");
+      dispatch(
+        setUser({
+          token: result.accessToken,
+          user: result.user,
+        })
+      );
+      navigate("/", { replace: true });
+    } catch (err) {
+      console.log("login is failed", err);
+    }
   };
 
-  useEffect(() => {}, []);
   return (
     <MasterForm
       title="Welcome back"

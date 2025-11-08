@@ -1,25 +1,27 @@
 import MasterForm from "@packages/shared/src/components/masterForm/MasterForm";
 import styles from "../../shared/auth.module.scss";
 import { InputsData } from "@packages/shared/src/components/masterForm/types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authRoutes } from "@packages/shared/src/routes/auth";
 import registrationStyles from "./registration.module.scss";
+import { useRegisterMutation } from "@packages/shared/src/store/api/auth/authAPI";
+import { RegisterRequest } from "@packages/shared/src/store/api/auth/types";
 
 const RegistrationInputs: InputsData[] = [
   {
-    inputName: "Email Address",
+    inputName: "email",
     placeholder: "Enter your email",
     inputType: "email",
     isRequired: true,
   },
   {
-    inputName: "Password",
+    inputName: "password",
     placeholder: "Enter your password",
     inputType: "password",
     isRequired: true,
   },
   {
-    inputName: "Confirm Password",
+    inputName: "confirmPassword",
     placeholder: "Confirm your password",
     inputType: "password",
     isRequired: true,
@@ -50,7 +52,26 @@ const PrivatPolicy: React.ReactNode = (
 );
 
 const Registration = () => {
-  const onSubmit = (values: Record<string, any>) => console.log(values);
+  const [register, { isLoading, error }] = useRegisterMutation();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values: Record<string, any>) => {
+    console.log(values);
+    const credentials: RegisterRequest = {
+      email: values.email,
+      password: values.password,
+    };
+
+    try {
+      const privet = await register(credentials).unwrap();
+      console.log(privet);
+      if (privet.status === 200) {
+        navigate("/auth/login", { replace: true });
+      }
+    } catch (err) {
+      console.log("reg is failed", err);
+    }
+  };
 
   return (
     <MasterForm

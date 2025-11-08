@@ -1,5 +1,5 @@
 {
-  "name": "shop",
+  "name": "profile",
   "version": "1.0.0",
   "dependencies": {
     "antd": "^5.28.0",
